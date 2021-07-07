@@ -1,0 +1,19 @@
+<% layout('layouts/boilerplate') -%> 
+<%- include('../partials/navbar'); %>
+<%- include('../partials/flash'); %>
+
+
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+  <% for(let camps of allcamps){ %>
+  
+    <div class="card mt-2 " style="width: 18rem">
+      <img src="<%=camps.url%> " class="card-img-top" alt="..." />
+      <div class="card-body">
+        <h5 class="card-title"><%= camps.title %></h5>
+        <h6 class="card-subtitle mb-2 text-muted"><%= camps.location %></h6>
+        <a href="campground/<%=camps.id%>" class="btn btn-primary" >view campground</a>
+      </div>
+    </div>
+  
+  <% } %>
+</div>

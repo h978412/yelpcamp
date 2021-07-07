@@ -1,0 +1,51 @@
+<% layout('layouts/boilerplate') -%>
+<%- include('../partials/navbar'); %>
+
+
+<form action="/campground" method="POST" novalidate class="needs-validation">
+    <div class="mb-3 mt-3">
+      <label for="title" class="form-label">Title</label>
+      <input type="text" class="form-control" id="title" required name="campground[title]" aria-describedby="emailHelp">
+      <div id="emailHelp" class="form-text">This is grnerally name of campground</div>
+      <div class="valid-feedback">
+      Looks good!
+    </div>
+    </div>
+    <div class="mb-3">
+      <label for="location" class="form-label">Location</label>
+      <input type="text" class="form-control" required name="campground[location]" id="location">
+      <div class="valid-feedback">
+      Looks good!
+    </div>
+    </div>
+    <div class="mb-3">
+        <label for="url" class="form-label">URL</label>
+        <input type="text" class="form-control" required name="campground[url]" id="url">
+        <div class="valid-feedback">
+      Looks good!
+    </div>
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea class="form-control" id="description" required name="campground[description]" rows="3"></textarea>
+        <div class="valid-feedback">
+      Looks good!
+    </div>
+      </div>
+      <div class="mb-3">
+        <label for="price" class="form-label">Price</label>
+        <input type="number" class="form-control" required name="campground[price]" id="price">
+        <div class="valid-feedback">
+      Looks good!
+    </div>
+      </div>
+    
+    <button type="submit" class="btn btn-primary">AddCampground</button>
+  </form>
+
+  
+
+
+
+
+

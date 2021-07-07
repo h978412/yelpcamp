@@ -1,0 +1,26 @@
+.home-bg{
+    background-image: url(https://images.unsplash.com/photo-1429497627149-e7839eef4fdb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218fHx8fHx8fHwxNjI0OTc0MDQ0&ixlib=rb-1.2.1&q=80&w=1080&utm_source=unsplash_source&utm_medium=referral&utm_campaign=api-credit);
+    height: 90vh;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.image{
+     padding-right: 1.2rem;
+     padding-left: 1.2rem;   
+}
+.showpage{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space;
+}
+.mid{
+    width: 100vh;
+    height: 100vh;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}

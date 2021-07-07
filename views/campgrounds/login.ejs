@@ -1,0 +1,21 @@
+<% layout('layouts/boilerplate') -%>
+<%- include('../partials/navbar'); %>
+<%- include('../partials/flash'); %>
+
+
+<form action="/login" method="POST" class="needs-validation mt-2">
+    <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" class="form-control" required name="username" id="username">
+        <div class="valid-feedback">
+      Looks good!
+    </div>
+    
+    <div class="mb-3">
+        <label for="password" class="form-label">password</label>
+        <input type="password" class="form-control" required name="password" id="password">
+        <div class="valid-feedback">
+      Looks good!
+    </div>
+    <button class="btn btn-success mt-2">login</button>
+</form>

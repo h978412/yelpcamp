@@ -1,0 +1,41 @@
+<% layout('layouts/boilerplate') -%>
+<%- include('../partials/navbar'); %>
+
+<form action="/campground/<%=camp.id%>?_method=PUT" method="POST">   
+    <div class="mb-3 mt-3">
+      <label for="title" class="form-label">Title</label>
+      <input type="text" class="form-control" value="<%= camp.title %>" id="title" name="campground[title]" aria-describedby="emailHelp">
+      <div id="emailHelp" class="form-text">This is grnerally name of campground</div>
+    </div>
+    <div class="mb-3">
+      <label for="location" class="form-label">Location</label>
+      <input type="text" class="form-control" value="<%= camp.location %>" name="campground[location]" id="location">
+    </div>
+    <div class="mb-3">
+        <label for="url" class="form-label">URL</label>
+        <input type="text" class="form-control" value="<%= camp.url %>" name="campground[url]" id="url">
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea class="form-control" id="description"  name="campground[description]" rows="3"><%= camp.description %></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="price" class="form-label">Price</label>
+        <input type="number" class="form-control" value="<%= camp.price %>" name="campground[price]" id="price">
+      </div>
+    <button type="submit" class="btn btn-primary">UpdateCampground</button>
+  </form>
+
+<!-- 
+
+    
+        <label for="title">title</label>
+        <input type="text" id="title" name="campground[title]"  ">
+        <label for="location">location</label>
+        <input type="text" id="location" name="campground[location]" value="<%= camp.location %> ">
+        <label for="location">url</label>
+        <input type="text" id="location" name="campground[url]" value="<%= camp.url %> ">
+        <label for="location">description</label>
+        <input type="text" id="location" name="campground[description]" value="<%= camp.description %> ">
+        <button>update campground</button>
+    </form> -->
