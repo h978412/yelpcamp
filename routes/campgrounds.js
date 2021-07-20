@@ -3,6 +3,11 @@ const Campground = require('../models/campground');
 const catchAsync = require('../utils/catchAsync');
 const ExpressError = require('../utils/errorclass');
 const {isLoggedIn}  = require('../middileware');
+const multer = require('multer');
+const {storage} = require('../cloudinary/index');
+
+const upload = multer({ storage })
+
 
 const router = express.Router();
 const {isValideCampground} = require('../validators/campgroundschemavalidator.js');
@@ -17,12 +22,16 @@ router.get('/',async (req,res)=>{
     res.render('campgrounds/new',{title:'add a campground'});
   })
 
-router.post('/',isLoggedIn,isValideCampground,catchAsync(async(req,res)=>{
-    const {campground} = req.body;
+router.post('/',isLoggedIn,upload.array('image'),isValideCampground, catchAsync( async(req,res)=>{
+  
+  const {campground} = req.body;
     campground.author = req.user._id;
+    campground.images = req.files.map(f =>({url:f.path,fileName:f.filename}))
+   
     const camp = new Campground(campground);
     const data = await camp.save();
     req.flash('success','campground succesfully created');
     res.redirect(`campground/${camp._id}`);
+   
    }));
 module.exports = router;

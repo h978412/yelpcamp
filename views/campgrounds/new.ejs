@@ -2,7 +2,7 @@
 <%- include('../partials/navbar'); %>
 
 
-<form action="/campground" method="POST" novalidate class="needs-validation">
+<form action="/campground" method="POST" novalidate class="needs-validation" enctype="multipart/form-data">
     <div class="mb-3 mt-3">
       <label for="title" class="form-label">Title</label>
       <input type="text" class="form-control" id="title" required name="campground[title]" aria-describedby="emailHelp">
@@ -19,12 +19,10 @@
     </div>
     </div>
     <div class="mb-3">
-        <label for="url" class="form-label">URL</label>
-        <input type="text" class="form-control" required name="campground[url]" id="url">
-        <div class="valid-feedback">
-      Looks good!
+      <label for="formFileMultiple" class="form-label">Upload image</label>
+      <input class="form-control" type="file" name="image" id="formFileMultiple" multiple>
     </div>
-      </div>
+      
       <div class="mb-3">
         <label for="description" class="form-label">Description</label>
         <textarea class="form-control" id="description" required name="campground[description]" rows="3"></textarea>

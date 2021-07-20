@@ -6,8 +6,8 @@
 <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
   <% for(let camps of allcamps){ %>
   
-    <div class="card mt-2 " style="width: 18rem">
-      <img src="<%=camps.url%> " class="card-img-top" alt="..." />
+    <div class="card mt-2 home" style="width: 18rem">
+      <img src="<%=camps.images[0].url%> " class="card-img-top" alt="..." />
       <div class="card-body">
         <h5 class="card-title"><%= camps.title %></h5>
         <h6 class="card-subtitle mb-2 text-muted"><%= camps.location %></h6>

@@ -1,7 +1,7 @@
 <% layout('layouts/boilerplate') -%>
 <%- include('../partials/navbar'); %>
 
-<form action="/campground/<%=camp.id%>?_method=PUT" method="POST">   
+<form action="/campground/<%=camp.id%>?_method=PUT" method="POST" enctype="multipart/form-data">   
     <div class="mb-3 mt-3">
       <label for="title" class="form-label">Title</label>
       <input type="text" class="form-control" value="<%= camp.title %>" id="title" name="campground[title]" aria-describedby="emailHelp">
@@ -12,8 +12,8 @@
       <input type="text" class="form-control" value="<%= camp.location %>" name="campground[location]" id="location">
     </div>
     <div class="mb-3">
-        <label for="url" class="form-label">URL</label>
-        <input type="text" class="form-control" value="<%= camp.url %>" name="campground[url]" id="url">
+        <label for="image" class="form-label">Add Image</label>
+         <input class="form-control" type="file" name="image" id="image" multiple>
       </div>
       <div class="mb-3">
         <label for="description" class="form-label">Description</label>
@@ -26,16 +26,3 @@
     <button type="submit" class="btn btn-primary">UpdateCampground</button>
   </form>
 
-<!-- 
-
-    
-        <label for="title">title</label>
-        <input type="text" id="title" name="campground[title]"  ">
-        <label for="location">location</label>
-        <input type="text" id="location" name="campground[location]" value="<%= camp.location %> ">
-        <label for="location">url</label>
-        <input type="text" id="location" name="campground[url]" value="<%= camp.url %> ">
-        <label for="location">description</label>
-        <input type="text" id="location" name="campground[description]" value="<%= camp.description %> ">
-        <button>update campground</button>
-    </form> -->

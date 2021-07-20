@@ -12,9 +12,6 @@ const campgroundSchema = joi.object({
     
     price : joi.number().min(0).required(),
     
-    url : joi.string()
-        .required(),
-
     description : joi.string()
                 
                 .required()

@@ -1,12 +1,14 @@
 const express = require('express');
 const catchAsync = require('../utils/catchAsync');
 const ExpressError = require('../utils/errorclass');
-const { findById } = require('../models/campground');
 const Review = require('../models/reviewes');
 const Campground = require('../models/campground');
 const {isLoggedIn,isAuthor}  = require('../middileware');
 const {isValideReview} = require('../validators/reviewschemavalidator')
 const {isValideCampground} = require('../validators/campgroundschemavalidator')
+const multer = require('multer');
+const {storage} = require('../cloudinary');
+const upload = multer({storage});
 
 
 const router = express.Router({mergeParams:true});
@@ -15,18 +17,28 @@ const router = express.Router({mergeParams:true});
 
 router.get('/',isLoggedIn,catchAsync(async(req,res,next)=>{
     const id = req.params.id;
-    const camp = await Campground.findById(id).populate({
+    
+    try{
+     const camp = await Campground.findById(id).populate({
       path:'review',
       populate:{
         path:'author'
       }
     }).populate('author');
-     res.render('campgrounds/show',{camp,title:`${camp.title}`});
+    res.render('campgrounds/show',{camp,title:`${camp.title}`});
+  }catch(e){
+    req.flash('error','cannot find your campground');
+    return res.redirect('/campground');
+  }
   }));
 
-  router.put('/',isLoggedIn,isAuthor,isValideCampground,catchAsync(async(req,res)=>{
+  router.put('/',isLoggedIn,isAuthor,upload.array('image'),isValideCampground,catchAsync(async(req,res)=>{
     const id = req.params.id;
-    await Campground.findByIdAndUpdate(id,req.body.campground);
+
+    const camp = req.body.campground;
+    const imgs = req.files.map(f =>({url:f.path,fileName:f.filename}));
+    camp.images = imgs;
+    await Campground.findByIdAndUpdate(id,camp);
     req.flash('success','campground succesfully updated');
     res.redirect(`/campground/${id}`);
   }));

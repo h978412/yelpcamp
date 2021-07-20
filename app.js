@@ -1,3 +1,6 @@
+if(process.env.NODE_ENV!=="production"){
+    require('dotenv').config();
+}
 const path = require('path');
 
 const express = require('express');
@@ -62,6 +65,7 @@ app.use('/campground',campgroundRoute);
 app.use('/campground/:id',idcampgroundRoute);
 
 app.get('/',(req,res)=>{
+    console.log(process.env.CLOUDINARY_KEY);
    res.render('home',{title:"home"});
 });
 
@@ -70,8 +74,10 @@ app.all('*',catchAsync(async(req,res)=>{
 }))
 
 app.use((err,req,res,next)=>{
-    const {message="something went wrong",statuscode=500} = err;
-    res.status(statuscode).render('campgrounds/error',{err,title:'error'});
+    // const {message="something went wrong",statuscode=500} = err;
+    // console.log("i'm here")
+    // res.status(statuscode).render('campgrounds/error',{err,title:'error'});
+    console.log(err);
 })
 
 app.listen(3000,(req,res)=>{
